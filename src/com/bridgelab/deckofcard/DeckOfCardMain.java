@@ -11,7 +11,8 @@ public class DeckOfCardMain {
 		DeckOfCard deckOfCard = new DeckOfCard();
 		deckOfCard.addPlayer(numOfPlayers);
 		deckOfCard.orderPlayerTurn(numOfPlayers);
-		deckOfCard.shuffleDeckOfCards();
+		//deckOfCard.shuffleDeckOfCards();
+		//deckOfCard.distributeCard();
 
 	}
 

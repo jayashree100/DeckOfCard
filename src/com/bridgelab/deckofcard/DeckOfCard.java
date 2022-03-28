@@ -60,9 +60,6 @@ public class DeckOfCard {
 			String[] tempArray = deckOfCards[i];
 			for (int j = 0; j < tempArray.length; j++) {
 				int r = j + rand.nextInt(tempArray.length - j);
-				// System.out.println(r);
-				// System.out.println(tempArray[i]);
-				// System.out.println(tempArray[j]);
 				String temp = tempArray[r];
 				tempArray[r] = tempArray[j];
 				tempArray[j] = temp;
