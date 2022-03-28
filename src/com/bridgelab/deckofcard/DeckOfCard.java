@@ -44,4 +44,12 @@ public class DeckOfCard {
 			}
 		}
 	}
+	
+	public void orderPlayerTurn(int numberOfPlayers) {
+		System.out.println("Enter the Player order");
+		for(int i = 0; i < numberOfPlayers; i++) {
+			int turn = sc.nextInt();
+			playerList.get(i).setPlayerTurn(turn);
+		}
+	}
 }
