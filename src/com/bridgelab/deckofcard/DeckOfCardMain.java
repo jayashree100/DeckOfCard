@@ -9,9 +9,15 @@ public class DeckOfCardMain {
 		System.out.println("Enter the number of player");
 		int numOfPlayers = sc.nextInt();
 		DeckOfCard deckOfCard = new DeckOfCard();
+		deckOfCard.setupDeckOfCards();
 		deckOfCard.addPlayer(numOfPlayers);
 		deckOfCard.orderPlayerTurn(numOfPlayers);
 		deckOfCard.shuffleDeckOfCards();
+		deckOfCard.distributeCards();
+		deckOfCard.displayCardSortByRank();
+		deckOfCard.displayPlayerCard();
+		//deckOfCard.printDeck();
+		sc.close();
 
 	}
 
