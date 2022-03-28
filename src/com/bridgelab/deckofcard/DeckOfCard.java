@@ -3,6 +3,7 @@ package com.bridgelab.deckofcard;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.*;
 
 public class DeckOfCard {
@@ -44,29 +45,46 @@ public class DeckOfCard {
 			}
 		}
 	}
-	
+
 	public void orderPlayerTurn(int numberOfPlayers) {
 		System.out.println("Enter the Player order");
-		for(int i = 0; i < numberOfPlayers; i++) {
+		for (int i = 0; i < numberOfPlayers; i++) {
 			int turn = sc.nextInt();
 			playerList.get(i).setPlayerTurn(turn);
 		}
 	}
-	
+
 	public void shuffleDeckOfCards() {
 		Random rand = new Random();
-		for(int i = 0; i < deckOfCards.length; i++) {
+		for (int i = 0; i < deckOfCards.length; i++) {
 			String[] tempArray = deckOfCards[i];
-		for(int j = 0; j < tempArray.length; j++) {
-			int r = j + rand.nextInt(tempArray.length - j);
-			//System.out.println(r);
-			//System.out.println(tempArray[i]);
-			//System.out.println(tempArray[j]);
-			String temp = tempArray[r];
-			tempArray[r] = tempArray[j];
-			tempArray[j] = temp;
-		}
+			for (int j = 0; j < tempArray.length; j++) {
+				int r = j + rand.nextInt(tempArray.length - j);
+				// System.out.println(r);
+				// System.out.println(tempArray[i]);
+				// System.out.println(tempArray[j]);
+				String temp = tempArray[r];
+				tempArray[r] = tempArray[j];
+				tempArray[j] = temp;
+			}
 			deckOfCards[i] = tempArray;
 		}
 	}
+
+	public void distributeCard() {
+		playerList.stream().sorted(Comparator.comparingInt(Player::getPlayerTurn)).collect(Collectors.toList());
+		for (int p = 0; p < playerList.size(); p++) {
+			int count = 0;
+			int cardIndex = p;
+			Card[] cardSet = new Card[9];
+			while (count < 9) {
+				Card card = deck[cardIndex];
+				cardSet[count] = card;
+				cardIndex += 5;
+				count++;
+			}
+			playerList.get(p).setCard(cardSet);
+		}
+	}
+
 }
